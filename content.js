@@ -21,7 +21,7 @@
   </style>
   <div class="world"></div>
   <div class="badge"><span>${pickaxe}</span><div><b>BILICRAFT</b><small class="mode-label">世界已就绪</small></div><button class="toggle" title="Alt + M">进入采集</button></div>
-  <div class="hud" hidden><div class="hint"><kbd>长按左键</kbd> 挖掘 · <kbd>1—9</kbd> 切换 · <kbd>Esc</kbd> 浏览</div><div class="stats"><div class="vitals">${heart.repeat(10)}</div><span class="level">0</span><div class="vitals">${food.repeat(10)}</div></div><div class="experience"><i></i></div><div class="hotbar"></div><div class="itemname">钻石镐 · 长按视频卡片采集</div></div>
+  <div class="hud" hidden><div class="hint" hidden></div><div class="stats"><div class="vitals">${heart.repeat(10)}</div><span class="level">0</span><div class="vitals">${food.repeat(10)}</div></div><div class="experience"><i></i></div><div class="hotbar"></div><div class="itemname">钻石镐 · 长按视频卡片采集</div></div>
   <div class="hand" hidden><div class="arm"></div><div class="tool">${pickaxe}</div><img class="held" alt="手持视频" hidden></div>
   <div class="outline" hidden><span class="target-label">视频方块 · 长按挖掘</span><svg class="cracks" viewBox="0 0 300 180" preserveAspectRatio="none"><g fill="none" stroke="#172018" stroke-width="5"><path d="M150 90l-24-22 6-21-25-15 5-32M126 68l-36 5-22-17-28 6L0 42M150 90l33-13 8-25 30-14 10-38M183 77l38 16 26-8 14 17 39-8M150 90l-9 30-27 11 3 27-19 22M141 120l24 13 14 30 27 17M114 131l-28-14-18 17-33-3L0 155"/></g><g fill="none" stroke="#172018" stroke-width="2"><path d="M68 56l4-32M221 38l40 4 15-16M247 85l-3-27 17-10M179 163l25-22 31 8 21-21M86 117l-20-20-26 2M132 47l29-17M117 158l-32 2"/></g></svg><div class="progress"></div></div>
   <div class="ghost" hidden><img alt="放置预览"><span>左键放置 · Esc 取消</span></div><div class="reticle" hidden></div><div class="toast" role="status" hidden></div>`;
@@ -93,7 +93,8 @@
     }
     $('.level').textContent=state.items.length;$('.experience i').style.width=inventory.length/6*100+'%';
     $('.itemname').textContent=chosen()?.title||(selected<3?toolNames[selected]:'空手');
-    $('.hint').textContent=chosen()?'左键放置 · 1 镐子 · Esc 浏览':toolMode()==='tnt'?'左键或右键放置 TNT · 3 打火石点燃':toolMode()==='flint'?'左键或右键点击 TNT 点燃 · Esc 取消引信':'长按左键挖掘 · 1 镐子 · 2 TNT · 3 打火石 · 4—9 物品';
+    $('.hint').textContent=toolMode()==='tnt'?'左键或右键放置 TNT · 3 打火石点燃':toolMode()==='flint'?'左键或右键点击 TNT 点燃 · Esc 取消引信':'';
+    $('.hint').hidden=!$('.hint').textContent;
     updateHand(!!mining);renderWorld();moveGhost();
   }
   function select(index){selected=index;stopMining();target=null;$('.outline').hidden=true;render();}
