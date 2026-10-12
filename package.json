@@ -1,0 +1,19 @@
+{
+  "name": "bilicraft-edge",
+  "version": "0.3.2",
+  "private": true,
+  "description": "Bilibili video mining extension",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node tests/regression.cjs",
+    "test:live": "node tests/live.cjs",
+    "test:visual": "node tests/hand.cjs && node tests/tnt.cjs"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "playwright": "1.62.1"
+  }
+}

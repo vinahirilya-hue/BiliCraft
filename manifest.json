@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "BiliCraft · 视频采集者",
+  "version": "0.3.2",
+  "description": "用像素镐挖下 B 站视频，收入快捷栏，再放回页面。",
+  "permissions": ["storage"],
+  "host_permissions": ["https://*.bilibili.com/*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_title": "BiliCraft · 视频采集者", "default_popup": "popup.html"},
+  "content_scripts": [{
+    "matches": ["https://*.bilibili.com/*"],
+    "js": ["visual.js", "content.js"],
+    "run_at": "document_idle"
+  }],
+  "web_accessible_resources": [{"resources": ["assets/*"], "matches": ["https://*.bilibili.com/*"]}]
+}
